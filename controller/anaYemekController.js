@@ -16,3 +16,20 @@ exports.addAnaYemek = async (req, res) => {
     });
   }
 };
+
+exports.allAnaYemekler = async (req, res) => {
+  const { anaYemeks, error } = await AnaYemekler.allAnaYemekler(req.body);
+  if (!error) {
+    res.json({
+      code: 200,
+      data: {
+        anaYemeks
+      }
+    });
+  } else {
+    res.json({
+      code: 422,
+      message: error.message
+    });
+  }
+};

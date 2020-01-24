@@ -33,3 +33,17 @@ module.exports.addAnaYemek = async params => {
   }
 };
 
+module.exports.allAnaYemekler = async params => {
+  try {
+    return AnaYemekler.find({})
+      .then(anaYemekler => {
+        return { anaYemekler };
+      })
+      .catch(error => {
+        return { error };
+      });
+  } catch (error) {
+    return { error };
+  }
+};
+
