@@ -18,12 +18,13 @@ exports.addAnaYemek = async (req, res) => {
 };
 
 exports.allAnaYemekler = async (req, res) => {
-  const { anaYemeks, error } = await AnaYemekler.allAnaYemekler(req.body);
+  const { anaYemekler, error } = await AnaYemekler.allAnaYemekler(req.body);
+  console.log(req.body.file);
   if (!error) {
     res.json({
       code: 200,
       data: {
-        anaYemeks
+        anaYemekler
       }
     });
   } else {

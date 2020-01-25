@@ -8,7 +8,7 @@ const anaYemeklerSchema = new Schema({
   tarifi: {
     type: String
   },
-  resim: {}
+  files: []
 });
 
 const AnaYemekler = (module.exports = mongoose.model(
@@ -46,4 +46,3 @@ module.exports.allAnaYemekler = async params => {
     return { error };
   }
 };
-
