@@ -8,6 +8,12 @@ const anaYemeklerSchema = new Schema({
   tarifi: {
     type: String
   },
+  malzeme: {
+    type: String
+  },
+  pismesüresi: {
+    type: Number
+  },
   files: []
 });
 
@@ -38,6 +44,20 @@ module.exports.allAnaYemekler = async params => {
     return AnaYemekler.find({})
       .then(anaYemekler => {
         return { anaYemekler };
+      })
+      .catch(error => {
+        return { error };
+      });
+  } catch (error) {
+    return { error };
+  }
+};
+
+module.exports.getYemek = params => {
+  try {
+    return AnaYemekler.findById(mongoose.Types.ObjectId(params._id))
+      .then(anaYemek => {
+        return { anaYemek };
       })
       .catch(error => {
         return { error };

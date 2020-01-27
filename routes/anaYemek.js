@@ -23,5 +23,6 @@ router.post(
   anaYemekController.addAnaYemek
 );
 router.get("/all", anaYemekController.allAnaYemekler);
+router.get("/:_id", anaYemekController.getYemek);
 
 module.exports = router;

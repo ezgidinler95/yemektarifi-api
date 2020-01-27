@@ -6,9 +6,6 @@ var logger = require("morgan");
 const cors = require("cors");
 const mongoose = require("mongoose");
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-
 var app = express();
 
 // cors secenekleri
@@ -43,11 +40,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
 
+const indexRouter = require("./routes/index");
+app.use("/", indexRouter);
+const usersRouter = require("./routes/users");
+app.use("/users", usersRouter);
 const anaYemekRouter = require("./routes/anaYemek");
 app.use("/ana-yemek", anaYemekRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

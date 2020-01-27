@@ -1,6 +1,12 @@
 const AnaYemekler = require("../modals/AnaYemekler");
 
 exports.addAnaYemek = async (req, res) => {
+  if (req.files.length > 0) {
+    req.body.files = [];
+    req.files.map(file => {
+      req.body.files.push(file.path.replace("public/yemekEkleFiles/", ""));
+    });
+  }
   const { anaYemek, error } = await AnaYemekler.addAnaYemek(req.body);
   if (!error) {
     res.json({
@@ -19,12 +25,28 @@ exports.addAnaYemek = async (req, res) => {
 
 exports.allAnaYemekler = async (req, res) => {
   const { anaYemekler, error } = await AnaYemekler.allAnaYemekler(req.body);
-  console.log(req.body.file);
   if (!error) {
     res.json({
       code: 200,
       data: {
         anaYemekler
+      }
+    });
+  } else {
+    res.json({
+      code: 422,
+      message: error.message
+    });
+  }
+};
+
+exports.getYemek = async (req, res) => {
+  const { anaYemek, error } = await AnaYemekler.getYemek(req.params);
+  if (!error) {
+    res.json({
+      code: 200,
+      data: {
+        anaYemek
       }
     });
   } else {
