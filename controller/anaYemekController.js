@@ -75,9 +75,7 @@ exports.updateYemek = async (req, res) => {
 };
 
 exports.deleteYemek = async (req, res) => {
-  console.log(req.body.id, "controller");
   const { yemek, error } = await AnaYemekler.deleteYemek(req.body.id);
-  console.log("buraya geldi", yemek);
   if (!error) {
     res.json({
       code: 200,
