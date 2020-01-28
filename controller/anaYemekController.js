@@ -56,3 +56,37 @@ exports.getYemek = async (req, res) => {
     });
   }
 };
+
+exports.updateYemek = async (req, res) => {
+  const { yemek, error } = await AnaYemekler.updateYemek(req.body);
+  if (!error) {
+    res.json({
+      code: 200,
+      data: {
+        yemek
+      }
+    });
+  } else {
+    res.json({
+      code: 422,
+      message: error.message
+    });
+  }
+};
+
+exports.deleteYemek = async (req, res) => {
+  const { yemek, error } = await AnaYemekler.deleteYemek(req.body);
+  if (!error) {
+    res.json({
+      code: 200,
+      data: {
+        yemek
+      }
+    });
+  } else {
+    res.json({
+      code: 422,
+      message: error.message
+    });
+  }
+};

@@ -66,3 +66,35 @@ module.exports.getYemek = params => {
     return { error };
   }
 };
+
+module.exports.updateYemek = params => {
+  try {
+    return AnaYemekler.findByIdAndUpdate(
+      mongoose.Types.ObjectId(params._id),
+      { ...params },
+      { new: true }
+    )
+      .then(updatedYemek => {
+        return { yemek: updatedYemek };
+      })
+      .catch(error => {
+        return { error };
+      });
+  } catch (error) {
+    return { error };
+  }
+};
+
+module.exports.deleteYemek = params => {
+  try {
+    return AnaYemekler.findByIdAndRemove(mongoose.Types.ObjectId(params._id))
+      .then(deletedYemek => {
+        return { yemek: deletedYemek };
+      })
+      .catch(error => {
+        return { error };
+      });
+  } catch (error) {
+    return { error };
+  }
+};

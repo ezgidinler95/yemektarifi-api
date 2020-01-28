@@ -24,5 +24,7 @@ router.post(
 );
 router.get("/all", anaYemekController.allAnaYemekler);
 router.get("/:_id", anaYemekController.getYemek);
+router.put("/", anaYemekController.updateYemek);
+router.delete("/", anaYemekController.deleteYemek);
 
 module.exports = router;
