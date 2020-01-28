@@ -86,8 +86,9 @@ module.exports.updateYemek = params => {
 };
 
 module.exports.deleteYemek = params => {
+  console.log("model", params);
   try {
-    return AnaYemekler.findByIdAndRemove(mongoose.Types.ObjectId(params._id))
+    return AnaYemekler.findByIdAndRemove(mongoose.Types.ObjectId(params))
       .then(deletedYemek => {
         return { yemek: deletedYemek };
       })

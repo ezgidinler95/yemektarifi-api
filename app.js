@@ -28,6 +28,7 @@ mongoose.connection.on("open", () => {
 mongoose.connection.on("error", err => {
   console.log(error);
 });
+mongoose.set("useFindAndModify", false);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -40,14 +41,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-
 const indexRouter = require("./routes/index");
 app.use("/", indexRouter);
 const usersRouter = require("./routes/users");
 app.use("/users", usersRouter);
 const anaYemekRouter = require("./routes/anaYemek");
 app.use("/ana-yemek", anaYemekRouter);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
