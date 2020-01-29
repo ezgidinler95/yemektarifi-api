@@ -14,6 +14,14 @@ const anaYemeklerSchema = new Schema({
   pismesüresi: {
     type: Number
   },
+  type: {
+    type: Number
+    /**
+     * 0:Ana Yemek
+     * 1:Kahvaltılık
+     * 2:Tatlı
+     */
+  },
   files: []
 });
 
@@ -68,6 +76,7 @@ module.exports.getYemek = params => {
 };
 
 module.exports.updateYemek = params => {
+  console.log("ilk gelen", params);
   try {
     return AnaYemekler.findByIdAndUpdate(
       mongoose.Types.ObjectId(params._id),
@@ -75,7 +84,8 @@ module.exports.updateYemek = params => {
       { new: true }
     )
       .then(updatedYemek => {
-        return { yemek: updatedYemek };
+        console.log("güncellenen", updatedYemek);
+        return { anaYemek: updatedYemek };
       })
       .catch(error => {
         return { error };

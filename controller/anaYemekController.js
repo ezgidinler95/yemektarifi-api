@@ -57,8 +57,8 @@ exports.getYemek = async (req, res) => {
   }
 };
 
-exports.updateYemek = async (req, res) => {
-  const { yemek, error } = await AnaYemekler.updateYemek(req.body);
+exports.deleteYemek = async (req, res) => {
+  const { yemek, error } = await AnaYemekler.deleteYemek(req.body.id);
   if (!error) {
     res.json({
       code: 200,
@@ -74,13 +74,19 @@ exports.updateYemek = async (req, res) => {
   }
 };
 
-exports.deleteYemek = async (req, res) => {
-  const { yemek, error } = await AnaYemekler.deleteYemek(req.body.id);
+exports.updateYemek = async (req, res) => {
+  if (req.files.length > 0) {
+    req.body.files = [];
+    req.files.map(file => {
+      req.body.files.push(file.path.replace("public/yemekEkleFiles/", ""));
+    });
+  }
+  const { anaYemek, error } = await AnaYemekler.updateYemek(req.body);
   if (!error) {
     res.json({
       code: 200,
       data: {
-        yemek
+        anaYemek
       }
     });
   } else {

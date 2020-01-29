@@ -22,9 +22,13 @@ router.post(
   multer({ storage: yemekEkleFilesStorage }).any(),
   anaYemekController.addAnaYemek
 );
+router.put(
+  "/",
+  multer({ storage: yemekEkleFilesStorage }).any(),
+  anaYemekController.updateYemek
+);
 router.get("/all", anaYemekController.allAnaYemekler);
 router.get("/:_id", anaYemekController.getYemek);
-router.put("/", anaYemekController.updateYemek);
 router.delete("/", anaYemekController.deleteYemek);
 
 module.exports = router;
