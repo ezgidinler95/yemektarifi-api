@@ -76,7 +76,6 @@ module.exports.getYemek = params => {
 };
 
 module.exports.updateYemek = params => {
-  console.log("ilk gelen", params);
   try {
     return AnaYemekler.findByIdAndUpdate(
       mongoose.Types.ObjectId(params._id),
@@ -84,7 +83,6 @@ module.exports.updateYemek = params => {
       { new: true }
     )
       .then(updatedYemek => {
-        console.log("güncellenen", updatedYemek);
         return { anaYemek: updatedYemek };
       })
       .catch(error => {
