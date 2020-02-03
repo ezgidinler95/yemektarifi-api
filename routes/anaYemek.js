@@ -28,6 +28,8 @@ router.put(
   anaYemekController.updateYemek
 );
 router.get("/all", anaYemekController.allAnaYemekler);
+router.get("/tatli", anaYemekController.getAllTatli);
+router.get("/kahvaltilik", anaYemekController.getAllKahvaltilik);
 router.get("/:_id", anaYemekController.getYemek);
 router.delete("/", anaYemekController.deleteYemek);
 

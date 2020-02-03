@@ -40,6 +40,40 @@ exports.allAnaYemekler = async (req, res) => {
   }
 };
 
+exports.getAllTatli = async (req, res) => {
+  const { anaYemekler, error } = await AnaYemekler.getAllTatli();
+  if (!error) {
+    res.json({
+      code: 200,
+      data: {
+        anaYemekler
+      }
+    });
+  } else {
+    res.json({
+      code: 422,
+      message: error.message
+    });
+  }
+};
+
+exports.getAllKahvaltilik = async (req, res) => {
+  const { anaYemekler, error } = await AnaYemekler.getAllKahvaltilik();
+  if (!error) {
+    res.json({
+      code: 200,
+      data: {
+        anaYemekler
+      }
+    });
+  } else {
+    res.json({
+      code: 422,
+      message: error.message
+    });
+  }
+};
+
 exports.getYemek = async (req, res) => {
   const { anaYemek, error } = await AnaYemekler.getYemek(req.params);
   if (!error) {

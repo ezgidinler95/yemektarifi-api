@@ -106,3 +106,46 @@ module.exports.deleteYemek = params => {
     return { error };
   }
 };
+
+module.exports.getAllAnaYemek = async () => {
+  try {
+    return await AnaYemekler.find({ type: 0 })
+      .then(anaYemekler => {
+        return { anaYemekler };
+      })
+      .catch(error => {
+        return { error };
+      });
+  } catch (error) {
+    return { error };
+  }
+};
+
+module.exports.getAllKahvaltilik = async () => {
+  console.log("modelde");
+  try {
+    return await AnaYemekler.find({ type: 1 })
+      .then(anaYemekler => {
+        return { anaYemekler };
+      })
+      .catch(error => {
+        return { error };
+      });
+  } catch (error) {
+    return { error };
+  }
+};
+
+module.exports.getAllTatli = async () => {
+  try {
+    return await AnaYemekler.find({ type: 2 })
+      .then(anaYemekler => {
+        return { anaYemekler };
+      })
+      .catch(error => {
+        return { error };
+      });
+  } catch (error) {
+    return { error };
+  }
+};
