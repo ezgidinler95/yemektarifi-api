@@ -122,7 +122,6 @@ module.exports.getAllAnaYemek = async () => {
 };
 
 module.exports.getAllKahvaltilik = async () => {
-  console.log("modelde");
   try {
     return await AnaYemekler.find({ type: 1 })
       .then(anaYemekler => {
