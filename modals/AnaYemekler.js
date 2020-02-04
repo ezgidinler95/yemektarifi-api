@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const moment = require("moment");
 
 const anaYemeklerSchema = new Schema({
   adi: {
@@ -20,7 +21,11 @@ const anaYemeklerSchema = new Schema({
      * 0:Ana Yemek
      * 1:Kahvaltılık
      * 2:Tatlı
+     * 3:Çorba
      */
+  },
+  tarih: {
+    type: Date
   },
   files: []
 });
@@ -138,6 +143,20 @@ module.exports.getAllKahvaltilik = async () => {
 module.exports.getAllTatli = async () => {
   try {
     return await AnaYemekler.find({ type: 2 })
+      .then(anaYemekler => {
+        return { anaYemekler };
+      })
+      .catch(error => {
+        return { error };
+      });
+  } catch (error) {
+    return { error };
+  }
+};
+
+module.exports.getGununMenusu = async () => {
+  try {
+    return await AnaYemekler.find({ tarih: moment().format("DD/MM/YYYY") })
       .then(anaYemekler => {
         return { anaYemekler };
       })

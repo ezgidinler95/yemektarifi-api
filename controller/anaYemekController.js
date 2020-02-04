@@ -1,6 +1,8 @@
 const AnaYemekler = require("../modals/AnaYemekler");
+const moment = require("moment");
 
 exports.addAnaYemek = async (req, res) => {
+  console.log("burda");
   if (req.files.length > 0) {
     req.body.files = [];
     req.files.map(file => {
@@ -121,6 +123,23 @@ exports.updateYemek = async (req, res) => {
       code: 200,
       data: {
         anaYemek
+      }
+    });
+  } else {
+    res.json({
+      code: 422,
+      message: error.message
+    });
+  }
+};
+
+exports.getGununMenusu = async (req, res) => {
+  const { anaYemekler, error } = await AnaYemekler.getGununMenusu();
+  if (!error) {
+    res.json({
+      code: 200,
+      data: {
+        anaYemekler
       }
     });
   } else {
